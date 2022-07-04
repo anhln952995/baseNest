@@ -5,6 +5,7 @@ const app_module_1 = require("./app.module");
 const setup_swagger_1 = require("./setup-swagger");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors();
     (0, setup_swagger_1.setupSwagger)(app);
     await app.listen(3000);
 }

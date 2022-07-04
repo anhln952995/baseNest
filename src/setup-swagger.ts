@@ -3,14 +3,13 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 export const setupSwagger = (app: INestApplication) => {
   const options = new DocumentBuilder()
-    .setTitle('BIZZI OPEN API')
-    // .setDescription("Bizzi OPEN API")
+    .setTitle('ACADEMI API')
     .setVersion('1.0')
-    .addApiKey({ type: 'apiKey', name: 'X-API-KEY', in: 'header' }, 'X-API-KEY')
+    .addApiKey({ type: 'apiKey', name: 'api-key', in: 'header' }, 'AccessToken')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('docs', app, document, {
+  SwaggerModule.setup('/', app, document, {
     uiConfig: {
       persistAuthorization: true,
     },
