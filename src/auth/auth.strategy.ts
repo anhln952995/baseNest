@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 export class AuthStrategy extends PassportStrategy(HeaderAPIKeyStrategy) {
   constructor(private readonly authService: AuthService) {
     super(
-      { header: 'api-key', prefix: '' },
+      { header: 'X-API-KEY', prefix: '' },
       false,
       async (apiKey: string, done: any) => {
         const authInfo = await this.authService.validateUser(apiKey);
