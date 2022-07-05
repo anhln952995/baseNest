@@ -1,10 +1,17 @@
 import { Sequelize } from 'sequelize';
 
+const env = {
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
+  port: process.env.db_port,
+};
+console.log(env);
 export const sequelize = new Sequelize(
   process.env.database,
   process.env.user,
   process.env.password,
-
   {
     host: process.env.host,
     dialect: 'mysql',

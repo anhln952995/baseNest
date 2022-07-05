@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const setup_swagger_1 = require("./setup-swagger");
+const sequelize_1 = require("./config/sequelize");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
+    sequelize_1.sequelize;
     (0, setup_swagger_1.setupSwagger)(app);
     await app.listen(3000);
 }
