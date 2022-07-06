@@ -9,7 +9,6 @@ const setupSwagger = (app) => {
         .setVersion('1.0')
         .addApiKey({ type: 'apiKey', name: 'X-API-KEY', in: 'header' }, 'AccessToken')
         .build();
-    console.log('options', options.components.securitySchemes);
     const document = swagger_1.SwaggerModule.createDocument(app, options);
     (0, node_fs_1.writeFileSync)('./swagger.json', JSON.stringify(document));
     swagger_1.SwaggerModule.setup('/docs', app, document, {

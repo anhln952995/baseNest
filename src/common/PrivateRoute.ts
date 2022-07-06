@@ -13,7 +13,6 @@ import {
 
 export function PrivateRoute() {
   return (target: Function) => {
-    console.log('dsaadsas');
     ApiSecurity('X-API-KEY')(target);
     UseGuards(AuthGuard('headerapikey'))(target);
     ApiUnauthorizedResponse({ description: 'Không được phép truy cập' })(
