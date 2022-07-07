@@ -11,6 +11,7 @@ export const ROLE_ARRAY = ['boss', 'super_admin', 'admin', 'teacher', 'pupils'];
 export enum ACTION {
   MANAGE = 'MANAGER',
   READ = 'READ',
+  LIST = 'LIST',
   CREATE = 'CREATE',
   UPDATE = 'UPDATE',
   DELETE = 'DELETE',
@@ -18,7 +19,6 @@ export enum ACTION {
 }
 
 export enum SUBJECT {
-  ALL = 'all',
   USER = 'user',
   ORGANIZATION = 'organization',
 }

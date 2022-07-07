@@ -25,6 +25,9 @@ export class User extends Model<User> {
   @Column
   created_by: string;
 
+  @Column
+  organization_id: string;
+
   @Column({
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   })

@@ -7,7 +7,7 @@ export class AuthService {
   async validateUser(apiKey: string): Promise<any> {
     const decodedToken = await verifyJWTToken(apiKey);
     return User.findOne({
-      attributes: ['user_id', 'role'],
+      attributes: ['user_id', 'role', 'organization_id'],
       where: { user_id: decodedToken, deleted_at: null },
     });
   }

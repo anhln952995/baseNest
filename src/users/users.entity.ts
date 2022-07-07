@@ -11,6 +11,9 @@ export class UserEntity {
 
   @ApiProperty()
   email: string;
+
+  @ApiProperty()
+  role: string;
 }
 export class UserDetailEntity extends UserEntity {
   @ApiProperty()

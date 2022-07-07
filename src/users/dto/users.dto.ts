@@ -16,6 +16,13 @@ export class UserIdParam {
   user_id: string;
 }
 
+export class EmailUserParam {
+  @ApiPropertyOptional()
+  @IsEmail()
+  @IsOptional()
+  email: string;
+}
+
 export class LoginUserBody {
   @ApiPropertyOptional()
   @IsEmail()
@@ -29,14 +36,26 @@ export class LoginUserBody {
   password: string;
 }
 
-export class CreateUserBody extends LoginUserBody {
+export class CreateUserBody {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
   role: string;
 
   @ApiPropertyOptional()
+  @IsEmail()
+  @IsOptional()
+  email: string;
+}
+
+export class ActiveUserBody {
+  @ApiPropertyOptional()
   @IsString()
+  @IsOptional()
+  @Min(6)
+  password: string;
+
+  @ApiPropertyOptional()
   @IsOptional()
   full_name: string;
 }
