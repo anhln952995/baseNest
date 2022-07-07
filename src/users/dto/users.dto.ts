@@ -8,6 +8,7 @@ import {
   IsArray,
   IsEmail,
 } from 'class-validator';
+import { Type, Expose } from 'class-transformer';
 
 export class UserIdParam {
   @ApiProperty()
@@ -38,4 +39,37 @@ export class CreateUserBody extends LoginUserBody {
   @IsString()
   @IsOptional()
   full_name: string;
+}
+
+export class ListUserParam {
+  @ApiPropertyOptional()
+  @IsUUID()
+  @IsOptional()
+  search?: string;
+
+  @ApiPropertyOptional({
+    default: 1,
+  })
+  @Type(() => Number)
+  @Min(1)
+  @IsOptional()
+  page?: number = 1;
+
+  @ApiPropertyOptional({
+    default: 20,
+  })
+  @Type(() => Number)
+  @Min(1)
+  @Max(100)
+  size?: number = 20;
+
+  @Expose()
+  get limit(): number {
+    return Math.min(+this.size, 100);
+  }
+
+  @Expose()
+  get offset(): number {
+    return this.limit * (this.page - 1);
+  }
 }
