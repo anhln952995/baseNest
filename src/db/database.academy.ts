@@ -1,9 +1,12 @@
 import { Sequelize } from 'sequelize-typescript';
 import { config } from 'dotenv';
-config();
+
 import { User } from './models/users.model';
 import { PupilInfo } from './models/pupil.info.model';
 import { Organization } from './models/organization.model';
+
+config();
+
 const env = {
   host: process.env.host,
   user: process.env.user,
@@ -31,7 +34,7 @@ export const databaseAcademy = [
         },
       });
       sequelize.addModels([User, PupilInfo, Organization]);
-      await sequelize.sync({ force: false, alter: true });
+      // await sequelize.sync({ force: false, alter: true });
       return sequelize;
     },
   },

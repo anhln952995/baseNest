@@ -12,8 +12,7 @@ export const setupSwagger = (app: INestApplication) => {
     )
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  writeFileSync('./swagger.json', JSON.stringify(document));
-  SwaggerModule.setup('/docs', app, document, {
+  SwaggerModule.setup('/', app, document, {
     uiConfig: {
       persistAuthorization: true,
     },
