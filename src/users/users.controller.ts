@@ -35,6 +35,7 @@ import {
 import { ROLE_ARRAY, ACTION, SUBJECT } from 'src/common/constant';
 import { ApiResponseData } from 'src/common/types';
 import { ability } from 'src/common/ability';
+import { MailService } from 'src/mail/mail.service';
 
 // import { PrivateRoute } from 'src/common/PrivateRoute';
 
@@ -42,7 +43,10 @@ import { ability } from 'src/common/ability';
 @Controller('user')
 // @PrivateRoute()
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly mailService: MailService,
+  ) {}
 
   @ApiOperation({ operationId: 'get-list-user' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -152,7 +156,8 @@ export class UsersController {
       createdBy: userId,
       organizationId,
     });
-    return new ApiResponseData(HttpStatus.OK, responseData);
+    await this.mailService.sendUserConfirmation(email);
+    return new ApiResponseData(HttpStatus.OK, 'responseData');
   }
 
   @ApiOperation({ operationId: 'active-user' })
